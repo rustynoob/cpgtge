@@ -1,0 +1,42 @@
+{
+  "components": [
+    {
+      "type": "transform",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "rotation": 0
+      }
+    },
+    {
+      "type": "polygon",
+      "properties": {
+        "vertices": []
+      }
+    },
+    {
+      "type": "physics",
+      "properties": {
+        "mass": 1,
+        "elasticity": 0.5,
+        "friction": 0.5,
+        "gravity": 9.81
+      }
+    },
+    {
+      "type": "collision",
+      "properties": {
+        "collisionCallbacks": {},
+        "activeCollisions": []
+      }
+    },
+    {
+      "type": "soundEffect",
+      "properties": {
+        "src": "",
+        "audioElement": null
+      }
+    }
+  ]
+}

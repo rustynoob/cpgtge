@@ -1,0 +1,72 @@
+ RenderSystem is responsible for rendering those elements to a canvas element.
+
+
+
+SpriteComponent
+
+A subclass of Component that represents a static image that can be rendered to the canvas.
+Properties
+
+    url (string): The URL of the image file.
+
+AnimatedSpriteComponent
+
+A subclass of Component that represents an animated image that can be rendered to the canvas.
+Properties
+
+    url (string): The URL of the sprite sheet image file.
+    frameWidth (number): The width of a single frame in the sprite sheet.
+    frameHeight (number): The height of a single frame in the sprite sheet.
+    frameCount (number): The number of frames in the sprite sheet.
+    frameRate (number): The number of seconds that should elapse between each frame change.
+    currentFrame (number): The index of the current frame.
+    elapsedTime (number): The number of seconds that have elapsed since the last frame change.
+
+ShapeComponent
+
+A subclass of Component that represents a geometric shape that can be rendered to the canvas.
+Properties
+
+    type (string): The type of shape to draw. Can be "rectangle" or "circle".
+    color (string): The color of the shape.
+    x (number): The x coordinate of the shape's position.
+    y (number): The y coordinate of the shape's position.
+    width (number): The width of the shape (for rectangle shapes).
+    height (number): The height of the shape (for rectangle shapes).
+    radius (number): The radius of the shape (for circle shapes).
+
+LineComponent
+
+A subclass of Component that represents a line that can be rendered to the canvas.
+Properties
+
+    color (string): The color of the line.
+    width (number): The width of the line.
+    x1 (number): The x coordinate of the start of the line.
+    y1 (number): The y coordinate of the start of the line.
+    x2 (number): The x coordinate of the end of the line.
+    y2 (number): The y coordinate of the end of the line.
+
+TextComponent
+
+A subclass of Component that represents text that can be rendered to the canvas.
+Properties
+
+    content (string): The content of the text.
+    font (string): The font of the text.
+    size (number): The size of the text.
+    `color
+    RenderSystem
+
+A class that updates the canvas element by rendering Entity objects with visual components (SpriteComponent,
+AnimatedSpriteComponent, ShapeComponent, LineComponent, TextComponent).
+Properties
+
+    fpsValues (array): An array of the last maxFpsValues frame times, in seconds.
+    maxFpsValues (number): The maximum number of frame times to keep in the fpsValues array.
+    canvas (HTMLCanvasElement): The canvas element that the system should render to.
+    buffer (HTMLCanvasElement): A canvas element that is used as an off-screen buffer for rendering.
+
+Methods
+
+    update(entities, dt): Performs updates on the given set of Entity objects. Renders the entities to the buffer canvas element in order of their z index (which is determined by the TransformComponent of each entity). If an entity has a SpriteComponent, the system renders the image to the canvas using the url property of the component and the position specified by the entity's TransformComponent. If an entity has an AnimatedSpriteComponent, the system updates the animation frame and renders the sprite sheet to the canvas using the properties of the component and the position specified by the entity's TransformComponent. If an entity has a ShapeComponent, the system renders the shape to the canvas using the properties of the component and the position specified by the entity's TransformComponent. If an entity has a LineComponent, the system renders the line to the canvas using the properties of the component. If an entity has a TextComponent, the system renders the text to the canvas using the properties of the component and the position specified by the entity's TransformComponent. Finally, the system copies the content of the buffer canvas to the canvas element and updates the FPS counter.

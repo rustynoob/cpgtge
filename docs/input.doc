@@ -1,0 +1,15 @@
+he InputSystem class is responsible for handling user input from the keyboard and touch events on the canvas. It has a number of class properties that store the current state of the input, such as left, right, up, and down. It also has event handlers for keydown, keyup, touchstart, touchmove, and touchend events that update the input state and store touch events in the touchEvents property. The InputSystem has a start method that sets up event listeners on the canvas element to trigger the appropriate event handlers. It also has an update method that updates the InputSystem's input state and touch events based on the current frame. This method should be called each frame to ensure that the InputSystem's input state is up to date.
+
+
+
+The ParticleTypeComponent is a component that stores a collection of particles and an update function. It has an update method that iterates over each particle and applies the update function to it, as well as checking for collisions with other entities that have the InteractorComponent. It also has a defaultUpdate function that updates the particle's position based on its velocity and acceleration.
+
+The Particle class represents a single particle with properties such as position, velocity, acceleration, direction, color, size, lifetime, type, and radius. It also has a markedForDeletion property that can be set to true when the particle should be removed.
+
+The ParticleInteractorComponent is a component that has two functions: checkCollision and onCollision. The checkCollision function is used to determine whether a particle and an entity are colliding, and the onCollision function is called when a collision is detected. It has a defaultCheckCollision function that checks if the particle is within the bounds of the entity's collision component.
+
+The makeParticleBounce function is a utility function that takes an entity and a particle as arguments and bounces the particle off the entity's collision component. It does this by reversing the particle's velocity in the direction of the collision.
+
+
+
+The PhysicsSystem is responsible for updating the physics properties of entities in the game. The physics properties include velocity, acceleration, and mass. The update method iterates over all the entities and checks if they have a PhysicsComponent. If they do, it updates their velocity and position based on their acceleration and the elapsed time since the last frame. The update method also checks for collisions between entities with PhysicsComponents and CollisionComponents. If a collision is detected, the update method calculates the resulting velocities of the two colliding entities using the principles of conservation of momentum and kinetic energy. The applyForce method allows the game to apply a force to an entity with a PhysicsComponent, which will update the entity's acceleration based on the force and its mass.

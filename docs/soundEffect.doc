@@ -1,0 +1,18 @@
+SoundEffectComponent
+
+A subclass of Component that represents a sound effect that can be played or looped.
+Properties
+
+    url (string): The URL of the audio file to play.
+    audioElement (Audio): An Audio object that represents the audio element for this sound effect.
+
+Methods
+
+    cleanUp(): Stops the audio element from playing.
+
+SoundEffectSystem
+
+A class that updates Entity objects with SoundEffectComponents.
+Methods
+
+    update(entities, dt): Performs updates on the given set of Entity objects. If an entity has a SoundEffectComponent with an instruction of "play" or "loop", the system creates an Audio element and plays the sound effect using the src property of the component. If the instruction is "play", the system sets the processBeforeDeleting property of the component to 0. If the instruction is "loop", the system sets the processBeforeDeleting property to a large number. The audioElement property of the SoundEffectComponent is set to the Audio element that is used to play the sound effect.

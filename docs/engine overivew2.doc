@@ -1,0 +1,88 @@
+Welcome to the game engine! This engine is designed to help you create and run your own games.
+
+To get started, you will need to import the necessary components and systems from the engine file. These include Entity, Component, and the various systems such as RenderSystem and ParticleSystem.
+
+To create a new entity in your game, use the Entity class. Entities are the building blocks of your game and can be used to represent characters, enemies, items, and other game objects.
+
+To add functionality to your entity, you will need to attach components to it. There are several types of components available, such as TransformComponent and CollisionComponent. You can also create your own custom components by extending the Component class.
+
+Once you have created your entities and attached the necessary components to them, you will need to add them to a system. Systems are responsible for updating and rendering the entities in your game. For example, the RenderSystem will handle drawing your entities to the screen, while the ParticleSystem will handle updating and rendering particle effects.
+
+To start your game, you will need to create an instance of the Game class and add your systems to it. Then, call the update method on the game instance each frame to process the entities and systems.
+
+That's it! With these basic building blocks, you should be able to create and run your own games using this engine. Good luck and have fun!
+
+
+The game engine is made up of several systems that work together to create and run a game. Here is a brief overview of each system and how it can be used:
+
+    RenderSystem: This system is responsible for rendering the game to the screen. It uses the HTML5 canvas element to draw the game entities and their components. To use this system, you will need to create a canvas element in your HTML file and pass it to the RenderSystem when you create it. You can then add entities with transform and sprite components to the game and they will be drawn to the canvas.
+
+    InputSystem: This system handles user input from the keyboard and touch events on the canvas. It has a number of class properties that store the current state of the input, such as left, right, up, and down. It also has event handlers for keydown, keyup, touchstart, touchmove, and touchend events that update the input state and store touch events. To use this system, you will need to create an InputSystem object and call its start method to set up the event listeners. You can then check the state of the input properties in your game logic to respond to user input.
+
+    PhysicsSystem: This system handles basic physics simulations for entities with physics and collision components. It updates the position and velocity of entities based on their acceleration and handles collisions between entities. To use this system, you will need to create a PhysicsSystem object and add entities with physics and collision components to the game. You can then apply forces to the entities using the applyForce method of the PhysicsSystem.
+
+    ParticleSystem: This system handles the creation, update, and removal of particles in the game. It has a number of components that can be added to entities to control the behavior of particles, including the ParticleTypeComponent, ParticleEmitterComponent, and ParticleInteractorComponent
+
+
+    To get started with your game, you'll need to import the required classes from the game engine. These include the Game class, which represents the game itself, and any System classes that you want to use. You can also import any Entity and Component classes that you need for your game.
+
+Here's an example of importing the necessary classes:
+
+import {Game, Entity, Component, RenderSystem, PhysicsSystem} from './game-engine';
+
+Next, create an instance of the Game class and add any systems that you want to use. For example, if you want to use the RenderSystem and PhysicsSystem, you can do the following:
+
+const game = new Game();
+game.addSystem(new RenderSystem());
+game.addSystem(new PhysicsSystem());
+
+Now you're ready to start creating Entity objects and adding Component objects to them. An Entity represents a single object in your game, and a Component represents a particular aspect of that object, such as its position, appearance, or behavior.
+
+To create an Entity, simply call the Entity constructor:
+
+const entity = new Entity();
+
+To add a Component to an Entity, you can use the addComponent method:
+
+entity.addComponent(new TransformComponent(0, 0, 10));
+entity.addComponent(new RenderComponent('#ff0000'));
+
+Once you've created your Entity objects and added the necessary Component objects to them, you can add them to the game using the
+
+
+To set up a basic game using this game engine, you will need to create a new Game object and add at least one system to it. You can then create new entities and add components to them to define their behavior and appearance. Finally, you can start the game loop by calling requestAnimationFrame and passing in a callback function to update and render the game each frame.
+
+Here is an example of setting up a basic game:
+
+import {Game, Entity, Component} from './engine.js';
+import {RenderSystem} from './graphics.js';
+
+// Create a new game object
+const game = new Game();
+
+// Add a render system to the game
+game.addSystem(new RenderSystem());
+
+// Create an entity with a transform and render component
+const entity = new Entity();
+entity.addComponent(new TransformComponent(400, 300, 9));
+entity.addComponent(new RenderComponent("red", 50, 50));
+
+// Add the entity to the game
+game.addEntity(entity);
+
+// Start the game loop
+let lastTime = 0;
+function gameLoop(timestamp) {
+  const dt = timestamp - lastTime;
+  lastTime = timestamp;
+  game.update(dt);
+
+  requestAnimationFrame(gameLoop);
+}
+requestAnimationFrame(gameLoop);
+
+This will create a new game with a render system and an entity with a red 50x50 rectangle at position (400, 300). The game loop will update and render the game at 60 FPS (frames per second).
+
+
+After setting up the basic game with the necessary systems, entities, and components, the next step would be to add some user interactions and game logic. This could be done by adding additional components, such as an InputComponent for handling user input, and writing custom update functions for the entities that contain game logic. Once the game logic has been implemented, the game can be run by calling the game.update method in a loop, such as with requestAnimationFrame or a custom game loop. The game can also be rendered to the screen by adding a RenderSystem and giving the entities a SpriteComponent or other renderable component.

@@ -1,0 +1,36 @@
+MusicSystem is a class that manages the playback of music tracks in a game. It has the following public methods:
+
+    playMusic: This method plays the specified music track. If a track is already playing, it will be stopped and the new track will be played.
+    pauseMusic: This method pauses the current music track. If no track is currently playing, this method has no effect.
+    stopMusic: This method stops the current music track and resets the audioElement to null. If no track is currently playing, this method has no effect.
+    preloadTrack: This method preloads the specified music track in a new Audio element.
+    update: This method updates the MusicSystem. It does the following:
+        If the current track has ended, it stops the music.
+        If the current track is within 5 seconds of finishing, it finds the next track to play and preloads it.
+        It updates the blacklist and required lists based on the MusicControlComponents of entities in the game.
+        It updates the current tags based on the MusicComponents of entities in the game.
+
+MusicSystem has the following public properties:
+
+    audioElement: This property holds the current Audio element that is being used to play the music track. If no track is currently playing, this property is null.
+    blacklistedTags: This property is a Set of tags that should not be played as the next track.
+    requiredTags: This property is a Set of tags that must be present in the next track.
+    currentTags: This property is a Set of tags that are present in the current track.
+
+MusicComponent is a class that represents a music track. It has the following public properties:
+
+    name: This property is the name of the component (always "music").
+    filePath: This property is the file path to the music track.
+    tags: This property is an array of tags associated with the music track.
+
+MusicControlComponent is a class that represents a music control command. It has the following public properties:
+
+    name: This property is the name of the component (always "musiccontrol").
+    type: This property is the type of music control command. It can be one of the following values:
+        "play": This command tells the MusicSystem to play the specified music track. The data property should be the file path to the music track.
+        "pause": This command tells the MusicSystem to pause the current music track. The data property is not used.
+        "crossfade": This command tells the MusicSystem to crossfade to the specified music track. The data property should be the file path to the music track.
+        "playtrackswithtags": This command tells the MusicSystem to play a track with at least one matching tag from the data property. The data property should be an array of tags.
+        "blacklisttags": This command tells the MusicSystem to add the specified tags to the blacklist. The data property should be an array of tags.
+        "requiredtags": This command tells the MusicSystem to add the specified tags to the required list. The data property should be an array of tags.
+    data: This property holds the data for the music control command. Its meaning depends on the value of the type property.

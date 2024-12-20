@@ -1,0 +1,64 @@
+debug
+
+A constant that is set to true. Its purpose is not clear from this code.
+Entity
+
+A class that represents a game object. An entity consists of one or more "components" that define its behavior and appearance.
+Properties
+
+    components (Map): A map of component objects that are attached to this entity. The keys of the map are the component names, and the values are the component objects.
+
+Methods
+
+    addComponent(component): Attaches the given component object to this entity.
+    removeComponent(componentName): Removes the component with the given name from this entity.
+    hasComponent(componentName): Returns a boolean indicating whether this entity has a component with the given name.
+    getComponent(componentName): Returns the component with the given name, or undefined if no such component is found.
+    delete(): Adds a DeleteComponent to this entity, which will cause it to be removed from the game during the next update cycle.
+
+Component
+
+A class that represents a piece of data or behavior that can be attached to an Entity.
+Properties
+
+    name (string): The name of this component.
+
+Methods
+
+    destroy(): Called when the component is ready to be removed. This method should ever be overridden by child classes. Use the cleanUp() method to add additional cleanup logic.
+    cleanUp(): A method that can be overridden by child classes to add additional cleanup logic.
+
+DeleteComponent
+
+A subclass of Component that represents a component that can be added to an Entity to mark it for deletion.
+TransformComponent
+
+A subclass of Component that represents a transform (position and orientation) for an Entity.
+Properties
+
+    x (number): The x coordinate of the entity's position in 3D space.
+    y (number): The y coordinate of the entity's position in 3D space.
+    z (number): The z coordinate of the entity's position in 3D space.
+
+CollisionComponent
+
+A subclass of Component that represents a collision box for an Entity.
+Properties
+
+    width (number): The width of the collision box.
+    height (number): The height of the collision box.
+
+Game
+
+A class that represents a game. It manages a set of Entity objects and runs a set of "systems" that perform updates and operations on those entities.
+Properties
+
+    entities (Set): A set of Entity objects that are in the game.
+    systems (Array): An array of objects representing systems that perform updates and operations on the entities in the game.
+
+Methods
+
+    addEntity(entity): Adds the given Entity object to the game.
+    removeEntity(entity): Removes the given Entity object from the game.
+    addSystem(system): Adds the given system object to the game.
+    update(dt): Performs updates on the entities and systems in the game. The update process includes checking for entities with the DeleteComponent, and deleting them if they are ready to be removed.
